@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="es" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ennaile | Streaming, Cosplay & Design</title>
+    
+    <link rel="icon" type="image/svg+xml" href="images/favicon.svg">
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@300;500;700&family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        :root {
+            --brand-purple: #9d2691;
+            --brand-light: #fdf2ff;
+            --brand-accent: #ff77e9;
+        }
+
+        body {
+            font-family: 'Fredoka', sans-serif;
+            background-color: #0d0112;
+            color: white;
+            overflow-x: hidden;
+        }
+
+        .font-brand { font-family: 'Fredoka', sans-serif; }
+        .font-body { font-family: 'Montserrat', sans-serif; }
+
+        .bg-animated {
+            background: linear-gradient(45deg, #0d0112, #4a0457, #1a0221, #9d2691);
+            background-size: 400% 400%;
+            animation: gradientBG 12s ease infinite;
+        }
+
+        @keyframes gradientBG {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        .floating-elements div {
+            position: absolute;
+            background: rgba(255, 255, 255, 0.8); /* Opacidad alta para máxima visibilidad */
+            box-shadow: 0 0 15px rgba(255, 119, 233, 0.9), 0 0 30px rgba(157, 38, 145, 0.6);
+            border-radius: 50%;
+            pointer-events: none;
+            animation: float 15s infinite linear;
+            filter: blur(0.5px);
+        }
+
+        @keyframes float {
+            from { transform: translateY(110vh) rotate(0deg); opacity: 1; }
+            to { transform: translateY(-15vh) rotate(360deg); opacity: 0; }
+        }
+
+        .glass {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .btn-purple {
+            background-color: var(--brand-purple);
+            transition: all 0.3s ease;
+        }
+
+        .btn-purple:hover {
+            background-color: var(--brand-accent);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(157, 38, 145, 0.4);
+        }
+
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease-out;
+        }
+
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        #mobile-menu {
+            transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        p.font-body.text-gray-500.text-sm {
+            color: #ffffff;
+            font-size: 14px;
+            font-weight: 300;
+            font-family: 'Montserrat', sans-serif;
+        }
+        p.max-w-2xl.mx-auto.text-gray-400 { color: #f472b6; }
+        
+    </style>
+</head>
+<body class="bg-animated">
+
+    <div class="floating-elements fixed inset-0 z-0 overflow-hidden" id="particles"></div>
+
+    <!-- NAVBAR -->
+    <nav class="fixed top-0 w-full z-50 glass px-6 py-3 transition-all duration-300" id="navbar">
+        <div class="max-w-7xl mx-auto flex justify-between items-center">
+            <a href="#" class="flex items-center gap-3">
+                <img src="images/logo_ennaile_blanco.svg" alt="Ennaile Logo" class="h-10 md:h-12 object-contain">
+            </a>
+
+            <div class="hidden md:flex gap-8 items-center text-sm font-medium uppercase tracking-widest">
+                <a href="#inicio" class="hover:text-pink-400 transition-colors">Inicio</a>
+                <a href="#twitch" class="hover:text-pink-400 transition-colors">Streaming</a>
+                <a href="#diseno" class="hover:text-pink-400 transition-colors">Diseño</a>
+                <a href="#cosplay" class="hover:text-pink-400 transition-colors">Cosplay</a>
+                <a href="https://www.twitch.tv/ennailegamer" target="_blank" class="btn-purple px-6 py-2 rounded-full font-bold">LIVE</a>
+            </div>
+
+            <button class="md:hidden text-2xl" id="menu-btn">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+    </nav>
+
+    <!-- MENU MOBILE -->
+    <div id="mobile-menu" class="fixed inset-0 z-[60] bg-black/95 flex flex-col items-center justify-center gap-8 translate-x-full md:hidden">
+        <button class="absolute top-8 right-8 text-3xl" id="close-btn"><i class="fas fa-times"></i></button>
+        <a href="#inicio" class="text-2xl font-brand">INICIO</a>
+        <a href="#twitch" class="text-2xl font-brand">STREAMING</a>
+        <a href="#diseno" class="text-2xl font-brand">DISEÑO</a>
+        <a href="#cosplay" class="text-2xl font-brand">COSPLAY</a>
+        <a href="https://www.twitch.tv/ennailegamer" class="btn-purple px-8 py-3 rounded-full font-bold">TWITCH</a>
+    </div>
+
+    <!-- HERO SECTION -->
+    <section id="inicio" class="relative min-h-screen flex items-center pt-24 px-6 z-10">
+        <div class="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+            <div class="reveal">
+                <h2 class="text-pink-400 font-brand text-xl mb-4 uppercase tracking-[0.2em]">Designer & Streamer</h2>
+                <h1 class="text-6xl md:text-8xl font-bold leading-none mb-6">
+                    MÁS QUE <br><span class="text-transparent bg-clip-text bg-gradient-to-r from-pink-400 to-purple-500">GAMING.</span>
+                </h1>
+                <p class="font-body text-gray-300 text-lg mb-8 max-w-lg">
+                    Soy Ennaile, una creativa obsesionada con los detalles, los videojuegos de mundo abierto y el arte de transformarse. ¡Bienvenidos a mi caos creativo!
+                </p>
+                <div class="flex flex-col sm:flex-row gap-4">
+                    <a href="#twitch" class="btn-purple px-8 py-4 rounded-2xl font-bold text-center">EXPLORAR</a>
+                    <a href="#cosplay" class="bg-white/10 hover:bg-white/20 border border-white/20 px-8 py-4 rounded-2xl font-bold transition-all text-center">COSPLAY</a>
+                </div>
+            </div>
+
+            <div class="relative reveal flex justify-center">
+                <div class="relative z-10 w-full max-w-md">
+                    <div class="absolute -inset-4 bg-purple-500/20 blur-3xl rounded-full"></div>
+                    <img src="images/Ennaile.png" alt="Ennaile" class="relative rounded-[3rem] shadow-2xl border-2 border-white/10 transform hover:rotate-2 transition-transform duration-500">
+                </div>
+                <div class="absolute -bottom-10 -right-10 w-32 h-32 md:w-48 md:h-48 animate-bounce" style="animation-duration: 4s;">
+                    <img src="images/icon_ponycornio.png" alt="Unicorn Icon">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="twitch" class="py-24 md:py-32 px-4 sm:px-6 z-10 relative">
+        <div class="max-w-7xl mx-auto glass rounded-[3rem] md:rounded-[4rem] p-6 sm:p-10 md:p-12 overflow-hidden relative">
+            <div class="absolute top-0 right-0 p-12 opacity-10 hidden md:block">
+                <i class="fab fa-twitch text-[150px]"></i>
+            </div>
+            
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+                <div class="reveal">
+                    <h3 class="font-brand text-3xl md:text-4xl mb-6">EN VIVO EN <span class="text-[#9146FF]">TWITCH</span></h3>
+                    <p class="font-body text-gray-300 mb-8 leading-relaxed">
+                        Me encuentras casi todas las noches explorando Santuario en <b>Diablo IV</b>, construyendo en <b>Fortnite</b> o simplemente charlando y riendo con la comunidad.
+                    </p>
+                    <ul class="space-y-4 mb-10">
+                        <li class="flex items-center gap-3"><i class="fas fa-check text-pink-500"></i> Interacción 100% con el chat</li>
+                        <li class="flex items-center gap-3"><i class="fas fa-check text-pink-500"></i> Humor, anécdotas y muchos memes</li>
+                        <li class="flex items-center gap-3"><i class="fas fa-check text-pink-500"></i> Gameplay de LoL, Diablo y variedad</li>
+                    </ul>
+                    <a href="https://www.twitch.tv/ennailegamer" class="inline-flex items-center justify-center gap-3 bg-[#9146FF] hover:bg-[#772ce8] w-full sm:w-auto px-6 md:px-10 py-4 rounded-2xl font-bold text-lg md:text-xl transition-all shadow-lg" target="_blank">
+                        <i class="fab fa-twitch text-xl md:text-2xl"></i> @ENNAILEGAMER
+                    </a>
+                </div>
+                
+                <div class="reveal">
+                    <div class="rounded-3xl border-4 border-[#9146FF]/30 overflow-hidden shadow-2xl shadow-purple-500/20">
+                        <img src="images/Stream_Room.png" alt="Stream Room" class="w-full h-full object-cover">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="diseno" class="py-24 px-6 z-10">
+        <div class="max-w-7xl mx-auto text-center mb-20 reveal">
+            <h2 class="font-brand text-5xl mb-4 italic">Diseño con <span class="text-pink-400">Propósito</span></h2>
+            <p class="max-w-2xl mx-auto text-gray-400">Como diseñadora gráfica, me enfoco en crear identidades visuales que capturen la esencia de cada marca.</p>
+        </div>
+
+        <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div class="reveal glass p-4 rounded-[2rem] group hover:scale-105 transition-all">
+                <div class="overflow-hidden rounded-2xl mb-6 aspect-square bg-white/5">
+                    <img src="images/Identidad_Visual.png" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
+                </div>
+                <h4 class="font-brand text-xl px-4">Identidad Visual</h4>
+            </div>
+
+            <div class="reveal glass p-4 rounded-[2rem] group hover:scale-105 transition-all">
+                <div class="overflow-hidden rounded-2xl mb-6 aspect-square bg-white/5">
+                    <img src="images/Overlays_&_UI.png" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
+                </div>
+                <h4 class="font-brand text-xl px-4">Overlays & UI</h4>
+            </div>
+
+            <div class="reveal glass p-4 rounded-[2rem] group hover:scale-105 transition-all">
+                <div class="overflow-hidden rounded-2xl mb-6 aspect-square bg-white/5">
+                    <img src="images/Tipografía_&_Letras.png" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
+                </div>
+                <h4 class="font-brand text-xl px-4">Tipografía & Letras</h4>
+            </div>
+
+            <!--div class="reveal glass p-4 rounded-[2rem] group hover:scale-105 transition-all">
+                <div class="overflow-hidden rounded-2xl mb-6 aspect-square bg-white/5">
+                    <img src="images/Tipografía_&_Letras.png" class="w-full h-full object-contain p-8">
+                </div>
+                <h4 class="font-brand text-xl px-4">Tipografía & Letras</h4>
+            </div-->
+        </div>
+    </section>
+
+    <section id="cosplay" class="py-32 px-6 bg-white/5 z-10 relative">
+        <div class="max-w-7xl mx-auto">
+            <div class="flex flex-col lg:flex-row gap-12 items-center">
+                <div class="lg:w-1/2 reveal">
+                    <div class="relative p-2 bg-gradient-to-br from-pink-500 to-purple-600 rounded-[3rem]">
+                        <img src="images/costplay-art.png" alt="Cosplay Art" class="rounded-[2.8rem] w-full shadow-2xl">
+                    </div>
+                </div>
+                <div class="lg:w-1/2 reveal text-center lg:text-left">
+                    <h2 class="font-brand text-5xl md:text-6xl mb-8 leading-tight">ARTE EN <br><span class="text-pink-400 underline decoration-white/20">MOVIMIENTO.</span></h2>
+                    <p class="font-body text-gray-300 text-lg mb-8 italic">
+                        "El cosplay para mí es la culminación de todas mis habilidades."
+                    </p>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-6 mb-10">
+                        <div class="glass p-6 rounded-3xl border-l-4 border-pink-500">
+                            <h5 class="font-brand text-xl mb-1">Props</h5>
+                            <p class="text-xs text-gray-500">Diseño y fabricación</p>
+                        </div>
+                        <div class="glass p-6 rounded-3xl border-l-4 border-purple-500">
+                            <h5 class="font-brand text-xl mb-1">Make Up</h5>
+                            <p class="text-xs text-gray-500">Caracterización profesional</p>
+                        </div>
+                    </div>
+                    <a href="https://www.instagram.com/ennailcosplay" class="btn-purple px-10 py-4 rounded-2xl font-bold flex items-center justify-center gap-2">
+                        <i class="fab fa-instagram"></i> VER GALERÍA COMPLETA
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="py-20 px-6 z-10 relative">
+        <div class="max-w-4xl mx-auto text-center reveal">
+            <img src="images/icon_ennaile_costplay.png" alt="Logo Icon" class="w-24 mx-auto mb-8">
+            <h2 class="font-brand text-4xl mb-12">HABLEMOS, CREEMOS, <span class="text-pink-400">JUGUEMOS.</span></h2>
+            
+            <div class="flex flex-wrap justify-center gap-6 mb-16">
+                <a href="#" class="w-16 h-16 glass rounded-2xl flex items-center justify-center text-2xl hover:text-pink-400 transition-all"><i class="fab fa-twitch"></i></a>
+                <a href="#" class="w-16 h-16 glass rounded-2xl flex items-center justify-center text-2xl hover:text-pink-400 transition-all"><i class="fab fa-instagram"></i></a>
+                <a href="#" class="w-16 h-16 glass rounded-2xl flex items-center justify-center text-2xl hover:text-pink-400 transition-all"><i class="fab fa-tiktok"></i></a>
+                <a href="#" class="w-16 h-16 glass rounded-2xl flex items-center justify-center text-2xl hover:text-pink-400 transition-all"><i class="fas fa-envelope"></i></a>
+            </div>
+            
+            <p class="font-body text-gray-500 text-sm">
+                &copy; 2026 Ennaile Martinez. Todos los derechos reservados. <br>
+                Diseñado por <b>Ennaile Gamer</b> para el debut en SOFA 2025.
+            </p>
+        </div>
+    </footer>
+
+    <script>
+        const particleContainer = document.getElementById('particles');
+        for (let i = 0; i < 100; i++) { 
+            const particle = document.createElement('div');
+            const size = Math.random() * 20 + 8; // Burbujas más grandes para mayor visibilidad
+            particle.style.width = size + 'px';
+            particle.style.height = size + 'px';
+            particle.style.left = Math.random() * 100 + 'vw';
+            particle.style.animationDuration = (Math.random() * 8 + 6) + 's'; 
+            particle.style.animationDelay = Math.random() * 12 + 's';
+            particle.style.opacity = Math.random() * 0.4 + 0.6; // Opacidad mínima base de 0.6
+            
+            particleContainer.appendChild(particle);
+        }
+
+        const menuBtn = document.getElementById('menu-btn');
+        const closeBtn = document.getElementById('close-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+
+        menuBtn.addEventListener('click', () => {
+            mobileMenu.classList.remove('translate-x-full');
+        });
+
+        closeBtn.addEventListener('click', () => {
+            mobileMenu.classList.add('translate-x-full');
+        });
+
+        document.querySelectorAll('#mobile-menu a').forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.add('translate-x-full');
+            });
+        });
+
+        function reveal() {
+            var reveals = document.querySelectorAll(".reveal");
+            for (var i = 0; i < reveals.length; i++) {
+                var windowHeight = window.innerHeight;
+                var elementTop = reveals[i].getBoundingClientRect().top;
+                var elementVisible = 100;
+                if (elementTop < windowHeight - elementVisible) {
+                    reveals[i].classList.add("active");
+                }
+            }
+        }
+        window.addEventListener("scroll", reveal);
+        reveal();
+
+        window.onscroll = function() {
+            const nav = document.getElementById('navbar');
+            if (window.pageYOffset > 50) {
+                nav.classList.add('py-2', 'bg-black/60');
+                nav.classList.remove('py-3');
+            } else {
+                nav.classList.remove('py-2', 'bg-black/60');
+                nav.classList.add('py-3');
+            }
+        };
+    </script>
+</body>
+</html>
